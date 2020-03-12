@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mt-4" style="max-width: 700px">
+    <div class="col">
+        <h2>Add Item</h2>
+        <form action="add_item/" method="post">
+            <div class="row mb-2">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Type here" name="text">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-4">
+            <div class="col">
+                <ul class="list-group">
+                {% for items in todo_items %}
+                    <li class="list-group-item">{{items.text}}
+                    <div class="float-right">
+                    <form action="delete/{{items.id}}" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button></form></div></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
